@@ -67,13 +67,13 @@
 
 <nav class="navbar navbar-expand-sm bg-light navbar-dark justify-content-center">
     <div class="btn-group">
-        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal" <php echo ($programaok=="ok")? 'disabled': '';>>
+        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal">
             Configurações do Simulador
         </button>
-        <a href="?base=hex" role="button" class="btn btn-outline-primary <php if ($base=='hex') echo 'active'; >">Hex</a>
-        <a href="?base=dec" role="button" class="btn btn-outline-primary <php if ($base=='dec') echo 'active'; >">Dec</a>
-        <a href="?base=bin" role="button" class="btn btn-outline-primary <php if ($base=='bin') echo 'active'; >">Bin</a>
-        <button type="button" class="btn btn-outline-success" id="btn-exe" <php echo ($programaok=="no")? 'disabled': '';>>Executar</button>
+        <a href="?base=hex" role="button" class="btn btn-outline-primary ">Hex</a>
+        <a href="?base=dec" role="button" class="btn btn-outline-primary ">Dec</a>
+        <a href="?base=bin" role="button" class="btn btn-outline-primary ">Bin</a>
+        <button type="button" class="btn btn-outline-success" id="btn-exe" >Executar</button>
         <!-- &nbsp;&nbsp;&nbsp;&nbsp;<div class="spinner-border text-success" id="spinnerB"></div> -->
         &nbsp;&nbsp;&nbsp;&nbsp;<div class="spinner-grow text-success" id="spinner"></div>
     </div>
@@ -87,21 +87,7 @@
         branch equal (beq), add, sub, and, or, nor, set on less than (slt), jump (j), 
         jump register (jr), shif left (sll), shift right (srl).
     </div> -->
-    <php
-		if (isset($_SESSION['msg']) && isset($_SESSION['status'])) {
-            if ($_SESSION['status'] == "ok") {
-                echo "<div class='alert alert-success alert-dismissible'>".
-                "<button type='button' class='close' data-dismiss='alert'>&times;</button>".
-                $_SESSION['msg']."</div>";
-            } else {
-                echo "<div class='alert alert-danger alert-dismissible'>".
-                "<button type='button' class='close' data-dismiss='alert'>&times;</button>".
-                $_SESSION['msg']."</div>";
-            }
-			unset($_SESSION['status']);
-			unset($_SESSION['msg']);
-		}
-	>
+    
     <div class="alert alert-secondary d-none">
         <strong>Success!</strong> Indicates a successful or positive action.
     </div>
@@ -134,26 +120,7 @@
                             <td>IR</td>
                             <td><=$IR></td>
                         </tr> -->
-                    <php foreach($REGISTERS as $key) {	
-                        /*
-                        if ($key[0]%2 == 0) { // para duas colunas
-                            echo "<tr>";
-                            echo "<td>".$key[0]."</td>";
-                            echo "<td>$".$key[1]."</td>";
-                            echo "<td>".$key[2]."</td>";
-                        } else {
-                            echo "<td>".$key[0]."</td>";
-                            echo "<td>$".$key[1]."</td>";
-                            echo "<td>".$key[2]."</td>";
-                            echo "</tr>";
-                        }
-                        */
-                        echo "<tr>";
-                        echo "<td>".$key[0]."</td>";
-                        echo "<td>$".$key[1]."</td>";
-                        echo "<td>".$key[2]."</td>";
-                        echo "</tr>";
-                    } // endforeach >
+                    
                     </tbody>
                 </table>
                 <hr class="d-sm-none">
@@ -196,23 +163,16 @@
                                 </tr>
                             </thead>
                             <tbody id="table-mem">
-                            <php if ($INSTRUCOES != NULL): >
-                                <php for ($i = 1; $i <= $QTD_INST; $i++): >
-                                    <php if ($CONTROLE_EXE == $i): >
                                 <tr class="<='bg-cell';>">
                                     <td>
                                         <img src="_plugins/imgs/next.png" class="" alt="next" width="18px">
                                     </td>
                                     <td><=$INSTRUCOES[$i-1]['mne']></td>
                                 </tr>
-                                <php else: >
                                 <tr class="">
                                     <td></td>
                                     <td><=$INSTRUCOES[$i-1]['mne']></td>
                                 </tr>
-                                    <php endif; >
-                                <php endfor; >
-                            <php endif; >
                             </tbody>
                         </table>
                     </div>
@@ -230,15 +190,11 @@
                                 </tr>
                             </thead>
                             <tbody id="table-mem">
-                            <php if ($MEMORIA != NULL): >
-                                <php foreach ($MEMORIA as $PALAVRA) : >
                                 <tr>
                                     <td><=$PALAVRA['idx'];></td>
                                     <td><=$PALAVRA['ins'][$base];></td>
                                     <!-- <td><=$PALAVRA['bloco']></td> -->
                                 </tr>
-                                <php endforeach; >
-                            <php endif; >
                             </tbody>
                         </table>
                     </div>
@@ -250,14 +206,12 @@
                     <h3>Cache de Instruções <span class="badge badge-success font-badge-hm">hit: <=$CACHEI_HIT></span> <span class="badge badge-danger font-badge-hm">miss: <=$CACHEI_MIS></span></h3>
                     <table class="table table-bordered table-font table-striped">
                         <thead>
-                            <php if ($GRAU_ASSO_I==1): >
                                 <tr>
                                 <th class="th-padding">ID</th>
                                 <th class="th-padding">V</th>
                                 <th class="th-padding">Tag</th>
                                 <th class="th-padding">Instruções</th>
                             </tr>
-                            <php elseif ($GRAU_ASSO_I==2): >    
                             <tr>
                                 <th class="th-padding">ID</th>
                                 <th class="th-padding">V</th>
@@ -267,23 +221,16 @@
                                 <th class="th-padding">Tag</th>
                                 <th class="th-padding">Instruções</th>
                             </tr>
-                            <php endif; >
                         </thead>
                         <tbody id="table-cache">
-                        <php if ($CACHE_INST!=NULL): >
-                            <php foreach ($CACHE_INST as $INST): >
-                                <php if ($GRAU_ASSO_I==1): >
                             <tr>
                                 <td><=$INST['i']></td>
                                 <td><=$INST['v']></td>
                                 <td><=$INST['t']></td>
                                 <td>
-                                    <php foreach ($INST['w'] as $palavra): >
                                     <=$palavra>&nbsp;
-                                    <php endforeach; >
                                 </td>
                             </tr>
-                                <php elseif ($GRAU_ASSO_I==2): >    
                             <tr>
                                 <td><=$i></td>
                                 <td>0</td>
@@ -294,9 +241,6 @@
                                 <td>0x0</td>
                                 <td>0x12345678</td>
                             </tr>
-                                <php endif; >
-                            <php endforeach; >
-                        <php endif; >
                         </tbody>
                     </table>
                     <hr class="d-sm-none">
@@ -305,14 +249,12 @@
                     <h3>Cache de Dados <span class="badge badge-success font-badge-hm">hit: <=$CACHED_HIT></span> <span class="badge badge-danger font-badge-hm">miss: <=$CACHED_MIS></span></h3>
                     <table class="table table-bordered table-font table-striped">
                         <thead>
-                            <php if ($GRAU_ASSO_D==1): >
                                 <tr>
                                 <th class="th-padding">ID</th>
                                 <th class="th-padding">V</th>
                                 <th class="th-padding">Tag</th>
                                 <th class="th-padding">Dados</th>
                             </tr>
-                            <php elseif ($GRAU_ASSO_D==2): >    
                             <tr>
                                 <th class="th-padding">ID</th>
                                 <th class="th-padding">V</th>
@@ -322,23 +264,16 @@
                                 <th class="th-padding">Tag</th>
                                 <th class="th-padding">Dados</th>
                             </tr>
-                            <php endif; >
                         </thead>
                         <tbody id="table-cache">
-                        <php if ($CACHE_DADO!=NULL): >
-                            <php foreach ($CACHE_DADO as $DADO): >
-                                <php if ($GRAU_ASSO_D==1): >
                             <tr>
                                 <td><=$DADO['i']></td>
                                 <td><=$DADO['v']></td>
                                 <td><=$DADO['t']></td>
                                 <td>
-                                    <php foreach ($DADO['w'] as $palavra): >
                                     <=$palavra>&nbsp;
-                                    <php endforeach; >
                                 </td>
                             </tr>
-                                <php elseif ($GRAU_ASSO_D==2): >    
                             <tr>
                                 <td><=$i></td>
                                 <td>0</td>
@@ -349,9 +284,6 @@
                                 <td>0x0</td>
                                 <td>0x12345678</td>
                             </tr>
-                                <php endif; >
-                            <php endforeach; >
-                        <php endif; >
                         </tbody>
                     </table>
                     <hr class="d-sm-none">
