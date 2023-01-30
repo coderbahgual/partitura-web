@@ -1,0 +1,133 @@
+@font-face {
+    font-family: LemonTuesday;
+    src: url("../fonts/LemonTuesday.otf") format("opentype");
+}
+@font-face {
+    font-family: LeagueSpartanBold;
+    src: url("../fonts/LeagueSpartanBold.otf") format("opentype");
+}
+@font-face {
+    font-family: SanchezRegular;
+    src: url("../fonts/SanchezRegular.otf") format("opentype");
+}
+@font-face {
+    font-family: Arimo;
+    src: url("../fonts/ArimoRegular.ttf") format("opentype");
+}
+@font-face {
+    font-family: OpenSansRegular;
+    src: url("../fonts/OpenSansRegular.ttf") format("opentype");
+}
+
+$green: #296849;
+$gray: #afb6af;
+$ease-out: cubic-bezier(.19, .76, .32 ,1);
+
+body{
+    background-color: transparent;
+    margin: 0;
+}
+
+main {
+  font-family: OpenSansRegular;
+  line-height: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  // background: linear-gradient(25deg, #296849, #e4e7e4);
+  background: transparent;
+}
+
+.animation {
+  width: 20em;
+  height: 4em;
+//   margin: 1em auto;
+  position: absolute;
+  right: 6px;
+  text-align: right;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.LemonTuesday {
+  font-family: LemonTuesday;
+}
+
+.Arimo {
+  font-family: Arimo;
+}
+
+.green {
+  color: $green;
+}
+
+.gray {
+  color: $gray;
+}
+
+.white {
+  color: white;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.mask {
+  overflow: hidden;
+  position: relative;
+}
+
+/*********************
+* Animation 4
+*********************/
+
+@keyframes animation-4-stroke {
+  0% {transform: translate3d(0, -100%, 0);}  
+  30% {transform: translate3d(0, -100%, 0);}  
+  60% {transform: translate3d(0, 0, 0);}
+}
+
+@keyframes animation-4-text {
+  0% {transform: translate3d(0, -100%, 0);}  
+  50% {transform: translate3d(0, -100%, 0);}  
+  80% {transform: translate3d(0, 0, 0);}
+}
+
+#animation-4 {
+  
+  & > div {
+    display: inline-block;
+    vertical-align: middle;
+    
+    div {
+      animation: 4s ease-out infinite alternate both;
+    }
+  }
+  
+  & > div:first-child {
+    font-size: 30px;
+    padding-top: 4px;
+    
+    div {
+      animation-name: animation-4-text;
+    }
+  }
+  
+  & > div:last-child {
+    
+    div {
+      width: .38em;
+      height: 2.4em;
+      background-color: $green;
+      animation-name: animation-4-stroke;
+    }
+  }
+}

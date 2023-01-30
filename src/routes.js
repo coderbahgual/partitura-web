@@ -1,10 +1,10 @@
 const express = require('express');
 
+const ProgramController = require('./controller/ProgramController');
+
 const routes = express.Router(); // desacoplar modulo de rotas do express em uma nova variavel
 
-routes.get('/', (req, res) =>{
-    res.send('Hello World');
-  });
+routes.get('/index', ProgramController.index);
 
 // routes.post('/ongs', async(request, response) => { // => arrow function // async == assincrona
     // const params = request.query; // query

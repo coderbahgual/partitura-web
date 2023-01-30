@@ -1,0 +1,15 @@
+body{
+    background-color: transparent;
+}
+@font-face {
+    font-family: LemonTuesday;
+    src: url("../fonts/LemonTuesday.otf") format("opentype");
+}
+@font-face {
+    font-family: LeagueSpartanBold;
+    src: url("../fonts/LeagueSpartanBold.otf") format("opentype");
+}
+@font-face {
+    font-family: SanchezRegular;
+    src: url("../fonts/SanchezRegular.otf") format("opentype");
+}
