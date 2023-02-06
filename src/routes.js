@@ -5,6 +5,7 @@ const ProgramController = require('./controller/ProgramController');
 const routes = express.Router(); // desacoplar modulo de rotas do express em uma nova variavel
 
 routes.get('/', ProgramController.index);
+routes.get('/index', ProgramController.index);
 routes.get('/sheet/:key', ProgramController.sheet);
 routes.get('/hash', ProgramController.hash);
 

@@ -1,9 +1,21 @@
 const path = require('path');
+const tom = require('./NotaController');
 
 module.exports = {
 
     async index(req, res) {
-        return res.render(path.resolve('src/view/index'));
+        try {
+            let notas = await tom.nota();
+            return res.render(path.resolve('src/view/index_key'),
+            {
+                nota: notas,
+            });
+        } catch( error) {
+            console.error(error);
+            return res.status(400).json({ // 400 Bad Request
+                error: "Nothing Here! For Good ;)"
+            });
+        }
     },
 
     async hash(req, res) {

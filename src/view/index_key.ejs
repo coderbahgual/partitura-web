@@ -10,11 +10,16 @@
 	<title>Notas por Tom</title>
 	<script src="/abcjs/abcjs-basic.js" type="text/javascript"></script>
 	<script type="text/javascript">
-		var abc = "T: Notas por Tom - Arduino\n" +
-			"|:D2|EB{c}BA B2 EB|~B2 AB dBAG|FDAD BDAD|FDAD dAFD|\n" +
-			"EBBA B2 EB|B2 AB defg|afe^c dBAF|DEFD E2:|\n" +
-			"|:gf|eB B2 efge|eB B2 gedB|A2 FA DAFA|A2 FA defg|\n" +
-			"eB B2 eBgB|eB B2 defg|afe^c dBAF|DEFD E2:|";
+        /*ex.:
+        X: 0
+        T: PARABENS
+        M: 2/4
+        L: 2/8
+        R: feliz
+        K: C
+        |GGAG cB GGAG dc ee g e c B A ffecdcc^c ||
+        */
+		var abc = "T: Notas por Tom - Arduino \nL: 1/4\n";
 
 		function load() {
 			ABCJS.renderAbc("paper", abc);
@@ -52,5 +57,27 @@
             </section>
         </main>
     </div>
+    <input type="hidden" id="n" value="<%=nota%>">
 </body>
+<script>
+    let nota = document.getElementById('n').value;
+    let cont = 1;
+    setInterval(() => {
+        console.log(nota);
+        // console.log(cont);
+        if (nota !== "") {
+            if ((cont%4 == 0) && (cont != 20)) {
+                abc+=nota+"|";
+                cont++;
+            } else if (cont == 20) {
+                abc+=nota+"|\n";
+                cont=1;
+            } else {
+                abc+=nota;
+                cont++;
+            }
+            load();
+        }
+    }, 600);
+</script>
 </html>
