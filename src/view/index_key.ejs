@@ -33,6 +33,7 @@
           }
           main section.output {
             display: block;
+            text-align: right !important;
           }
             [fill="#ff0000"] {
                 fill: currentColor;
@@ -50,12 +51,12 @@
     </header>
     <div class="container">
         <main>
-            <div id="paper"></div>
-            <section class="output">
+            <section class="output" style="text-align: right !important;">
                 <nav>
                   <button onclick="window.print()">Imprimir</button>
                 </nav>
             </section>
+            <div id="paper"></div>
         </main>
     </div>
 </body>
