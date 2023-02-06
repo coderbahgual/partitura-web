@@ -9,6 +9,7 @@
 
 	<title>Notas por Tom</title>
 	<script src="/abcjs/abcjs-basic.js" type="text/javascript"></script>
+	<script src="/plugins/jquery-3.6.0.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
         /*ex.:
         X: 0
@@ -57,13 +58,20 @@
             </section>
         </main>
     </div>
-    <input type="hidden" id="n" value="<%=nota%>">
 </body>
 <script>
-    let nota = document.getElementById('n').value;
+    let nota = '';
     let cont = 1;
     setInterval(() => {
-        console.log(nota);
+        $.ajax({
+            type: 'GET',
+            url: 'http://192.168.0.177',
+            success: function(data) {
+                // console.log(data.nota);
+                nota = data.nota;
+            }
+        });
+        // console.log(nota);
         // console.log(cont);
         if (nota !== "") {
             if ((cont%4 == 0) && (cont != 20)) {
